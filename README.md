@@ -58,8 +58,8 @@ TicTacToe/
 |   |   |-- HumanPlayer.java //Jugador
 |   |   |-- AIPlayer.java // EL algoritmo MiniMax
 |   |   |-- Board.java // la representacón del tablero
-|-- bin/
-|  |-- *.class //Todos los archivos class
+|   |- bin/
+|       |-- *.class //Todos los archivos class
 |-- README.md
 ```
 Dejaré una carpeta adicional, que vendrán archivo de bash y batch, para Linux, Mac y Windows, para ejectuar y compilar, a su vez de depositar inmediatamente los elementos class en la carpeta bin, esta carpeta la denominaré `commands/`
