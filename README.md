@@ -42,7 +42,7 @@ if(x==y){
 * @return verdadero si el juego ha acabdo, de lo contrario falso
 */
 public boolean isGameOver(){...}
-
+```
 # Propuesta inicial
 
 Esta es mi propuesta inicial de clases que podemos manejar para el desarrollo del programa 
