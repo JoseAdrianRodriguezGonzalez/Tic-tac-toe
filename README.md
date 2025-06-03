@@ -2,8 +2,7 @@
 
 Este repositorio contendrá el clásico juego del gato. En este README, se encontrán los lineaminetos a seguir para poder desarrollar y contribuir a este proyecto
 
->[!NOTE]
-
+> [!NOTE]
 > Nombres de clases, variables, funciones estarán en inglés
 
 # Nombre de las clases
@@ -62,7 +61,7 @@ TicTacToe/
 |-- bin/
 |  |-- *.class //Todos los archivos class
 |-- README.md
-
+```
 Dejaré una carpeta adicional, que vendrán archivo de bash y batch, para Linux, Mac y Windows, para ejectuar y compilar, a su vez de depositar inmediatamente los elementos class en la carpeta bin, esta carpeta la denominaré `commands/`
 
 
