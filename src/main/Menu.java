@@ -1,5 +1,5 @@
 public class Menu{
-    public void printTitle(){
+    public void PrintTitle(){
         final String PURPLE = "\u001B[35m";
         final String RESET = "\u001B[0m";
         System.out.print(PURPLE +
