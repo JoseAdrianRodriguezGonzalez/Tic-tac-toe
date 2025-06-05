@@ -64,4 +64,17 @@ TicTacToe/
 ```
 Dejaré una carpeta adicional, que vendrán archivo de bash y batch, para Linux, Mac y Windows, para ejectuar y compilar, a su vez de depositar inmediatamente los elementos class en la carpeta bin, esta carpeta la denominaré `commands/`
 
-
+# Main (Todos)
+La sección principal del código, contendrá el juego por sí mismo
+# Menu (isa) parcialmente comletado
+Contedrá las opciones para poder cambiar el modo de juego, humano o ia
+# Game (Rodolfo) 
+Contiene las reglas del juego, el como determina quien gana o pierde tablero,turnos,escoger el x u o,verificar ganador
+# Player (Jorge) 
+Clase abstracta que dará la base para crear los modos de juego, (Jugador contra Jugador e IA)
+# HumanPlayer (Emilio)
+Modo 1 jugador
+# AIPlayer (Jose)
+ modo jugador contra la computadora
+# Board (Isa) completado
+El despliegue del tablero
