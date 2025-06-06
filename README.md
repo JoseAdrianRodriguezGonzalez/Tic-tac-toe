@@ -70,7 +70,7 @@ La sección principal del código, contendrá el juego por sí mismo
 Contedrá las opciones para poder cambiar el modo de juego, humano o ia
 # Game (Rodolfo) 
 Contiene las reglas del juego, el como determina quien gana o pierde tablero,turnos,escoger el x u o,verificar ganador
-# Player (Jorge) 
+# Player (Jorge) Completado
 Clase abstracta que dará la base para crear los modos de juego, (Jugador contra Jugador e IA)
 # HumanPlayer (Emilio)
 Modo 1 jugador
