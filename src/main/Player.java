@@ -10,7 +10,7 @@ public abstract class Player {
      * @param symbol El símbolo del jugador ('X' o 'O').
      */
     public Player(char Symbol) {
-        this.Symbol = Character.toUpperCase(symbol);
+        this.Symbol = Character.toUpperCase(Symbol);
     }
 
     /**
