@@ -7,6 +7,8 @@ public class Game {
     private short playerAmount; 
     private HumanPLayer playerOne, playerTwo; 
     private IAPLayer sysPlayer; 
+
+    
     /*
      * El constructor de la clase es el encargado crear los objetos que va a necesitar 
      * a lo largo del juego. 
@@ -19,7 +21,26 @@ public class Game {
         this.playerAmount = 0;  
     }
 
-    public void hasWon() {}
+    public void hasWon(Board currState) {}
+
+    public byte[] askMove(){
+        byte[] move = new byte[2];   
+        System.out.println("~~~Jugada~~~: "); 
+        System.out.println("Fila: "); 
+        move[0] = scanner.nextByte();  
+        System.out.println("Columna: "); 
+        move[1] = scanner.nextByte(); 
+
+        while (!this.gameBoard.IsCellEmpty(move[0], move[1])) {
+            System.out.println("ERROR\n ¡Celda ya ocupada!");
+            System.out.println("~~~Jugada~~~: "); 
+            System.out.println("Fila: "); 
+            move[0] = scanner.nextByte();  
+            System.out.println("Columna: "); 
+            move[1] = scanner.nextByte();
+        }
+        return move; 
+    }
 
     public void setPlayerSymb(){  
         while (this.playerAmount != 1 || this.playerAmount != 2) { 
@@ -56,17 +77,22 @@ public class Game {
 
     public void play() {
         this.gameMenu.PrintTitle(); 
-
+        byte[] move; 
         setPlayerSymb(); 
         System.out.println("Inicia el jugador 1"); 
         /*
          * Main game loop
          */
         while (true) {
-            /*
-             * Lógica del juego.
-             * El tablero no es accesible. La matriz es privada. 
-             */
+            System.out.println("Turno del jugador 1:");
+            move = askMove(); 
+            this.gameBoard.SetCell(move[0], move[1], this.playerOne.GetSymbol()); 
+            
+
+            System.out.println("Turno del jugador 2: ");
+            move = askMove(); 
+            this.gameBoard.SetCell(move[0], movd][1], this.playerTwo.GetSymbol());
+            
         }
     }
     
