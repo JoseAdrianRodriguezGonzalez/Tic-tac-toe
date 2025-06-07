@@ -17,13 +17,17 @@ public class Game {
         this.playerAmount = 0;  
     }
 
+    public void getWinner() {}
+
     public void play(){
         this.gameMenu.PrintTitle(); 
 
+        System.out.println("\n"); 
+         
         while (this.playerAmount != 1 || this.playerAmount != 2) { 
-            System.out.println("[Insertar mensaje de numero de jugadores]");
-            scanner.nextShort();
-            System.out.println("Los modos de juego disponibles son:\n 1: para un jugador\n 2: para dos jugadores\n\n");
+            System.out.println("ERROR"); 
+            System.out.println("Los modos de juego disponibles son:\n 1: para un jugador\n 2: para dos jugadores\n\n");    
+            scanner.nextShort(); 
         }
 
         
