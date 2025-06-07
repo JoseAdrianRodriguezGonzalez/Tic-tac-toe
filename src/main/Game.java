@@ -17,6 +17,7 @@ public class Game {
         this.playerAmount = 0;  
     }
 
+<<<<<<< Updated upstream
     public void getWinner() {}
 
     public void play(){
@@ -28,6 +29,15 @@ public class Game {
             System.out.println("ERROR"); 
             System.out.println("Los modos de juego disponibles son:\n 1: para un jugador\n 2: para dos jugadores\n\n");    
             scanner.nextShort(); 
+=======
+    public void play(){
+        this.gameMenu.PrintTitle(); 
+
+        while (this.playerAmount != 1 || this.playerAmount != 2) { 
+            System.out.println("[Insertar mensaje de numero de jugadores]");
+            scanner.nextShort();
+            System.out.println("Los modos de juego disponibles son:\n 1: para un jugador\n 2: para dos jugadores\n\n");
+>>>>>>> Stashed changes
         }
 
         
