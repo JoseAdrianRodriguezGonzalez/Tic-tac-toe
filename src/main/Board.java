@@ -1,7 +1,7 @@
 public class Board{
     //matriz 3x3
     private Cell[][] Cells = new Cell[3][3];
-
+    
     //constructor del tablero, inicializa cada celda 
     public Board(){
         for(Byte Row =0; Row < 3; Row++){
@@ -26,6 +26,7 @@ public class Board{
             System.out.println(((Rows<2)?"___|___|___":"   |   |   "));
         }
     }
+    
     /* Requiere la fila y la columna en donde se ingresará el dato,(de 0 a 2) y el valor del string 
     metodo para asignar el valor de cada jugador(X /O) dentro de la matriz Cells
     No retorna nada*/
@@ -40,9 +41,10 @@ public class Board{
     /*Recibe el indice de fila y columna que se desee verficar si está vacía
      * Retorna un valor booleano
     */
-    public boolean IsCellEmpty(byte Row,byte Col){
+    public boolean IsCellEmpty(int Row, int Col){
         return Cells[Row][Col].GetValue().equals(" ");
     }
+
 }// fin clase Board
 
 

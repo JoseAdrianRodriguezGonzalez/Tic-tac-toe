@@ -1,3 +1,4 @@
+import com.sun.jdi.connect.Connector;
 import java.util.Scanner; 
 public class Game {
     public boolean turn; 
@@ -8,6 +9,7 @@ public class Game {
     private HumanPLayer playerOne, playerTwo; 
     private IAPLayer sysPlayer; 
 
+    private char[][] gameState; 
     
     /*
      * El constructor de la clase es el encargado crear los objetos que va a necesitar 
@@ -18,10 +20,12 @@ public class Game {
         this.gameMenu = new Menu(); 
         this.scanner = new Scanner(System.in); 
         this.turn = true;
+        this.gameState = new char[3][3]; 
         this.playerAmount = 0;  
     }
-
-    public void hasWon(Board currState) {}
+    public void hasWon(char[][] currState) {
+        
+    }
 
     public byte[] askMove(){
         byte[] move = new byte[2];   
@@ -86,13 +90,13 @@ public class Game {
         while (true) {
             System.out.println("Turno del jugador 1:");
             move = askMove(); 
-            this.gameBoard.SetCell(move[0], move[1], this.playerOne.GetSymbol()); 
-            
+            this.gameBoard.SetCell((move[0], move[1], this.playerOne.GetSymbol()); 
+            gameState[(int)move[0]][(int)move[1]] = playerOne.GetSymbol();  
 
             System.out.println("Turno del jugador 2: ");
             move = askMove(); 
             this.gameBoard.SetCell(move[0], movd][1], this.playerTwo.GetSymbol());
-            
+            gameState[(int)move[0]][(int)move[1]] = playerTwo.GetSymbol();
         }
     }
     
