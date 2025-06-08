@@ -1,7 +1,5 @@
-import com.sun.jdi.connect.Connector;
 import java.util.Scanner; 
 public class Game {
-    public boolean turn; 
     private Menu gameMenu; 
     private Board gameBoard;
     private Scanner scanner; 
@@ -19,7 +17,6 @@ public class Game {
         this.gameBoard = new Board(); 
         this.gameMenu = new Menu(); 
         this.scanner = new Scanner(System.in); 
-        this.turn = true;  
         this.playerAmount = 0;  
     }
     /*
@@ -78,66 +75,66 @@ public class Game {
         return move; 
     }
 
-    public void setPlayerSymb(){  
-        while (this.playerAmount != 1 || this.playerAmount != 2) { 
-            System.out.println("ERROR"); 
-            System.out.println("""
-                               Los modos de juego disponibles son:
-                                    1: para un jugador
-                                    2: para dos jugadores
-                               """);    
-            scanner.nextShort(); 
-        }
-        /*
-         * Hacer la asignación de los símbolos que usará cada jugador. 
-        */
-        if (playerAmount == 1) {
-            System.out.println("""
-                               Por favor seleccione su simbolo:
-                                    X 
-                                    O
-                               """);
-            this.playerOne = new HumanPlayer(scanner.nextLine());
-            this.sysPLayer = new IAPlayer(HumanPlayer.GetSymbol() == "O" ? "X" : "O");  
-        } else {
-            System.out.println("""
-                               Jugador 1: Por favor seleccione su simbolo:
-                                    X 
-                                    O
-                               """);
-            
-            this.playerOne = new HumanPlayer(scanner.nextLine());
-            this.sysPLayer = new IAPlayer(HumanPlayer.GetSymbol() == "O" ? "X" : "O");
-        }        
-    }
-
-    public void play() {
-        this.gameMenu.PrintTitle(); 
-        byte[] move; 
-        setPlayerSymb(); 
-        System.out.println("Inicia el jugador 1"); 
-        /*
-         * Main game loop
-         */
+    public void onePlayerGame(){        
         while (true) {
+            byte[] move = new byte[2]; 
             System.out.println("Turno del jugador 1:");
             move = askMove(); 
-            this.gameBoard.SetCell((move[0], move[1], this.playerOne.GetSymbol()); 
+            this.gameBoard.SetCell(move[0], move[1], this.playerOne.GetSymbol()); 
             gameState[(int)move[0]][(int)move[1]] = playerOne.GetSymbol();  
+            this.gameBoard.PrintBoard();
             if (isWinner(gameState)) {
                 System.out.println("Victoria de " + playerOne.GetSymbol());
-                return; 
+                break; 
             }
 
             System.out.println("Turno del jugador 2: ");
             move = askMove(); 
-            this.gameBoard.SetCell(move[0], movd][1], this.playerTwo.GetSymbol());
+            this.gameBoard.SetCell(move[0], move[1], this.playerTwo.GetSymbol());
             gameState[(int)move[0]][(int)move[1]] = playerTwo.GetSymbol();
+            this.gameBoard.PrintBoard();
             if (isWinner(gameState)) {
                 System.out.println("Victoria de " + playerOne.GetSymbol());
-                return; 
+                break; 
             }
         }
+    }
+
+    public void twoPlayerGame() {
+         while (true) {
+            byte[] move = new byte[2]; 
+            System.out.println("Turno del jugador 1:");
+            move = askMove(); 
+            this.gameBoard.SetCell(move[0], move[1], this.playerOne.GetSymbol()); 
+            gameState[(int)move[0]][(int)move[1]] = playerOne.GetSymbol();  
+            this.gameBoard.PrintBoard();
+            if (isWinner(gameState)) {
+                System.out.println("Victoria de " + playerOne.GetSymbol());
+                break; 
+            }
+
+            System.out.println("Turno del jugador IA: ");
+            move = sysPlayer.MakeMove(this.gameBoard);  
+            this.gameBoard.SetCell(move[0], move[1], this.playerTwo.GetSymbol());
+            gameState[(int)move[0]][(int)move[1]] = playerTwo.GetSymbol();
+            this.gameBoard.PrintBoard();
+            if (isWinner(gameState)) {
+                System.out.println("Victoria de " + playerOne.GetSymbol());
+                break; 
+            }
+        }
+    }
+
+    public void play() {
+        int option;
+        gameMenu.PrintTitle();
+        option = gameMenu.RunMenu(); 
+        if (option == 0) {
+            onePlayerGame();
+        } else if (option == 1) {
+            twoPlayerGame(); 
+        }
+
     }
     
 }
