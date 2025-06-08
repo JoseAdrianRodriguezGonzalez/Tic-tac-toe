@@ -1,4 +1,3 @@
-import java.lang.annotation.Repeatable;
 import java.util.Scanner;
 /*I
  * Clase dedica a imprimir el menu
@@ -25,9 +24,9 @@ public class Menu{
             "                  \\____/ \\__,_| \\_/ \\__,_|                \n"
             + RESET);
     }
-    /** Función que no recibe párametros ni retorna un valor.
+    /** Función que no recibe párametros y retorna un entero que indica la opción elegida que inidca el tipo de juego que se va a jugar.
      * Despliega el menu y las opciones posibles */
-    public void RunMenu() {
+    public int RunMenu() {
         Scanner Scanf = new Scanner(System.in);
         byte Option;
         final String PURPLE = "\u001B[38;5;93m";
@@ -60,7 +59,7 @@ public class Menu{
                     RESET);
 
                     //funcion de Player vs Player
-                    break;
+                    return 0;
                 case 2:
                     System.out.print(PINK +
                         "\n" +
@@ -73,8 +72,8 @@ public class Menu{
                         "                  __/ |                                               \n" +
                         "                 |___/                                               \n" +
                         RESET);
+                        return 1;
                     //funcion de Player vs AI
-                    break;
                 case 3:
                     System.out.println("Leaving ...");
                     break;
@@ -83,5 +82,6 @@ public class Menu{
             }
             System.out.println("Selected option: " + Option);
         } while (Option != 3);
+        return  3;
     }
 }
