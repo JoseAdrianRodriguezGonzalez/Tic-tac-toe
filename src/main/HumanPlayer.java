@@ -6,15 +6,15 @@ import java.util.Scanner;
  */
 public class HumanPlayer extends Player {
 
-    private Scanner scanner;
+    private Scanner Scanner;
 
     /**
      * Constructor: del jugador humano.
      * Parametro (symbol) El símbolo que representará al jugador ('X' o 'O').
      */
-    public HumanPlayer(char symbol) {
-        super(symbol);
-        this.scanner = new Scanner(System.in);
+    public HumanPlayer(char Symbol) {
+        super(Symbol);
+        this.Scanner = new Scanner(System.in);
     }
 
     /**
@@ -25,32 +25,32 @@ public class HumanPlayer extends Player {
      * return: Un arreglo de dos bytes que representa la jugada [fila, columna].
      */
     @Override
-    public byte[] makeMove(Board board) {
-        byte[] move = new byte[2];
-        boolean valid = false;
+    public byte[] MakeMove(Board board) {
+        byte[] Move = new byte[2];
+        boolean Valid = false;
 
-        while (!valid) {
+        while (!Valid) {
             try {
-                System.out.println(" --- Turno del jugador (" + symbol + ") ---");
+                System.out.println(" --- Turno del jugador (" + Symbol + ") ---");
                 System.out.print("Fila (0-2): ");
-                move[0] = scanner.nextByte();
+                Move[0] = Scanner.nextByte();
                 System.out.print("Columna (0-2): ");
-                move[1] = scanner.nextByte();
+                Move[1] = Scanner.nextByte();
 
-                if (move[0] < 0 || move[0] > 2 || move[1] < 0 || move[1] > 2) {
+                if (Move[0] < 0 || Move[0] > 2 || Move[1] < 0 || Move[1] > 2) {
                     System.out.println("  Índices fuera de rango. Intenta de nuevo.");
-                } else if (!board.IsCellEmpty(move[0], move[1])) {
+                } else if (!board.IsCellEmpty(Move[0], Move[1])) {
                     System.out.println("  La celda ya está ocupada. Elige otra.");
                 } else {
-                    valid = true;
+                    Valid = true;
                 }
 
             } catch (Exception e) {
                 System.out.println("  Entrada inválida. Usa números enteros.");
-                scanner.nextLine(); // Limpiar buffer
+                Scanner.nextLine(); // Limpiar buffer
             }
         }
 
-        return move;
+        return Move;
     }
 }//Fin de la clase HumanPlayer
