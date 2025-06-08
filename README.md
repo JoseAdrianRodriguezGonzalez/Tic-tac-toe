@@ -68,13 +68,17 @@ Dejaré una carpeta adicional, que vendrán archivo de bash y batch, para Linux,
 La sección principal del código, contendrá el juego por sí mismo
 # Menu (isa) completado
 Contedrá las opciones para poder cambiar el modo de juego, humano o ia
-# Game (Rodolfo) Parcialmente completado
+# Game (Rodolfo) Completado
 Contiene las reglas del juego, el como determina quien gana o pierde tablero,turnos,escoger el x u o,verificar ganador
 # Player (Jorge) Completado
 Clase abstracta que dará la base para crear los modos de juego, (Jugador contra Jugador e IA)
-# HumanPlayer (Emilio)
+# HumanPlayer (Emilio) Completado
 Modo 1 jugador
 # AIPlayer (Jose)
  modo jugador contra la computadora
 # Board (Isa) completado
 El despliegue del tablero
+
+# ¿Qué sigue?
+
+La siguiente fase va a ser unir todas clases que se crearon, debido a que las ultimas o se pueden unificar, debo de corregir diversas secciones.
