@@ -1,6 +1,13 @@
+import java.lang.annotation.Repeatable;
 import java.util.Scanner;
-
+/*I
+ * Clase dedica a imprimir el menu
+ */
 public class Menu{
+    /*
+     * Función que no recibe párametros ni retorna un valor.
+     * Imprime un titulo con colores
+     */
     public void PrintTitle(){
         final String PURPLE = "\u001B[35m";
         final String RESET = "\u001B[0m";
@@ -18,25 +25,27 @@ public class Menu{
             "                  \\____/ \\__,_| \\_/ \\__,_|                \n"
             + RESET);
     }
-    
+    /** Función que no recibe párametros ni retorna un valor.
+     * Despliega el menu y las opciones posibles */
     public void RunMenu() {
-    Scanner scanf = new Scanner(System.in);
-    byte option;
-    final String PURPLE = "\u001B[38;5;93m";
-    final String PINK = "\u001B[38;5;201m";
-    final String RESET = "\u001B[0m";
+        Scanner Scanf = new Scanner(System.in);
+        byte Option;
+        final String PURPLE = "\u001B[38;5;93m";
+        final String PINK = "\u001B[38;5;201m";
+        final String RESET = "\u001B[0m";
+        do {
+            PrintTitle();
+            System.out.println("Choose an option: ");
+            System.out.println("1. Player VS Player");
+            System.out.println("2. Player VS AI");
+            System.out.println("3. Exit");
+            Option = Scanf.nextByte();
 
-    do {
-        System.out.println("Choose an option: ");
-        System.out.println("1. Player VS Player");
-        System.out.println("2. Player VS AI");
-        System.out.println("3. Exit");
-        option = scanf.nextByte();
-
-        if (!(option > 0 && option < 4)) {
-            System.out.println("Invalid option!!!");
-        } else {
-            switch (option) {
+            if (!(Option > 0 && Option < 4)) {
+                System.out.println("Invalid option!!!");
+                continue;
+            }
+            switch (Option) {
                 case 1:
                     System.out.print(PURPLE +
                     "\n" +
@@ -72,8 +81,7 @@ public class Menu{
                 default:
                     System.out.println("Invalid option!!!");
             }
-            System.out.println("Selected option: " + option);
-        }
-    } while (option != 3);
-}
+            System.out.println("Selected option: " + Option);
+        } while (Option != 3);
+    }
 }
