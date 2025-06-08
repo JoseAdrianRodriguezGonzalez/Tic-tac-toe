@@ -19,11 +19,10 @@ public class Menu{
             + RESET);
     }
     
-    public void runMenu() {
+    public void RunMenu() {
     Scanner scanf = new Scanner(System.in);
     byte option;
     final String PURPLE = "\u001B[38;5;93m";
-    final String BLUE = "\u001B[38;5;21m";
     final String PINK = "\u001B[38;5;201m";
     final String RESET = "\u001B[0m";
 
