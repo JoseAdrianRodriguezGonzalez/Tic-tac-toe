@@ -9,7 +9,7 @@ public class Game {
     private HumanPLayer playerOne, playerTwo; 
     private IAPLayer sysPlayer; 
 
-    private char[][] gameState; 
+    private char[][] gameState = {{' ', ' ', ' '}, {' ', ' ', ' '}, {' ', ' ', ' '}}; 
     
     /*
      * El constructor de la clase es el encargado crear los objetos que va a necesitar 
@@ -19,12 +19,44 @@ public class Game {
         this.gameBoard = new Board(); 
         this.gameMenu = new Menu(); 
         this.scanner = new Scanner(System.in); 
-        this.turn = true;
-        this.gameState = new char[3][3]; 
+        this.turn = true;  
         this.playerAmount = 0;  
     }
-    public void hasWon(char[][] currState) {
-        
+    /*
+     *  Verificar de esta forma redcuce la complejidad
+     */
+    public boolean isWinner(char[][] currState) {
+        char one, two, three; 
+
+        // Verificación de todas las filas y columnas.
+        for (int i = 0; i < 3; i++) {
+            one = currState[i][0];
+            two = currState[i][1];
+            three = currState[i][2]; 
+
+            if (one != ' ' && one == two && two == three) return true; 
+
+            one = currState[0][i];
+            two = currState[1][i];
+            three = currState[2][i];
+
+            if (one != ' ' && one == two && two == three) return true;
+        } 
+        // Verificar la diagonal
+        one = currState[0][0];
+        two = currState[1][1];
+        three = currState[2][2];
+        if (one != ' ' && one == two && two == three) return true;
+
+        // Verificar la otra diagonal 
+        one = currState[0][2];
+        two = currState[1][1];
+        three = currState[2][0];
+        if (one != ' ' && one == two && two == three) return true;
+
+
+        return false;
+
     }
 
     public byte[] askMove(){
@@ -92,11 +124,19 @@ public class Game {
             move = askMove(); 
             this.gameBoard.SetCell((move[0], move[1], this.playerOne.GetSymbol()); 
             gameState[(int)move[0]][(int)move[1]] = playerOne.GetSymbol();  
+            if (isWinner(gameState)) {
+                System.out.println("Victoria de " + playerOne.GetSymbol());
+                return; 
+            }
 
             System.out.println("Turno del jugador 2: ");
             move = askMove(); 
             this.gameBoard.SetCell(move[0], movd][1], this.playerTwo.GetSymbol());
             gameState[(int)move[0]][(int)move[1]] = playerTwo.GetSymbol();
+            if (isWinner(gameState)) {
+                System.out.println("Victoria de " + playerOne.GetSymbol());
+                return; 
+            }
         }
     }
     
