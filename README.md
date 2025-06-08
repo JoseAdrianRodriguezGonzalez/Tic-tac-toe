@@ -66,9 +66,9 @@ Dejaré una carpeta adicional, que vendrán archivo de bash y batch, para Linux,
 
 # Main (Todos)
 La sección principal del código, contendrá el juego por sí mismo
-# Menu (isa) parcialmente comletado
+# Menu (isa) completado
 Contedrá las opciones para poder cambiar el modo de juego, humano o ia
-# Game (Rodolfo) 
+# Game (Rodolfo) Parcialmente completado
 Contiene las reglas del juego, el como determina quien gana o pierde tablero,turnos,escoger el x u o,verificar ganador
 # Player (Jorge) Completado
 Clase abstracta que dará la base para crear los modos de juego, (Jugador contra Jugador e IA)
