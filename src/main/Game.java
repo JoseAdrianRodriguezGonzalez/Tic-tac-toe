@@ -4,8 +4,8 @@ public class Game {
     private Board gameBoard;
     private Scanner scanner; 
     private short playerAmount; 
-    private HumanPLayer playerOne, playerTwo; 
-    private IAPLayer sysPlayer; 
+    private HumanPlayer playerOne, playerTwo; 
+    private AIPlayer sysPlayer; 
 
     private char[][] gameState = {{' ', ' ', ' '}, {' ', ' ', ' '}, {' ', ' ', ' '}}; 
     
@@ -80,7 +80,7 @@ public class Game {
             byte[] move = new byte[2]; 
             System.out.println("Turno del jugador 1:");
             move = askMove(); 
-            this.gameBoard.SetCell(move[0], move[1], this.playerOne.GetSymbol()); 
+            this.gameBoard.SetCell(move[0], move[1],Character.toString( this.playerOne.GetSymbol())); 
             gameState[(int)move[0]][(int)move[1]] = playerOne.GetSymbol();  
             this.gameBoard.PrintBoard();
             if (isWinner(gameState)) {
@@ -90,7 +90,7 @@ public class Game {
 
             System.out.println("Turno del jugador 2: ");
             move = askMove(); 
-            this.gameBoard.SetCell(move[0], move[1], this.playerTwo.GetSymbol());
+            this.gameBoard.SetCell(move[0], move[1],Character.toString(this.playerTwo.GetSymbol()));
             gameState[(int)move[0]][(int)move[1]] = playerTwo.GetSymbol();
             this.gameBoard.PrintBoard();
             if (isWinner(gameState)) {
@@ -105,7 +105,7 @@ public class Game {
             byte[] move = new byte[2]; 
             System.out.println("Turno del jugador 1:");
             move = askMove(); 
-            this.gameBoard.SetCell(move[0], move[1], this.playerOne.GetSymbol()); 
+            this.gameBoard.SetCell(move[0], move[1],Character.toString(this.playerOne.GetSymbol())); 
             gameState[(int)move[0]][(int)move[1]] = playerOne.GetSymbol();  
             this.gameBoard.PrintBoard();
             if (isWinner(gameState)) {

@@ -30,7 +30,7 @@ public class Board{
     /* Requiere la fila y la columna en donde se ingresará el dato,(de 0 a 2) y el valor del string 
     metodo para asignar el valor de cada jugador(X /O) dentro de la matriz Cells
     No retorna nada*/
-    public void SetCell(int Row, int Col, String Value){
+    public void SetCell(byte Row, byte Col, String Value){
         Value=Value.toUpperCase();
         if(!Value.equals("X")&&!Value.equals("O")){
             System.out.println("No se permite ese tipo de valor.");
