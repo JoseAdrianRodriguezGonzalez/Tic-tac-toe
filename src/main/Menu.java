@@ -1,9 +1,8 @@
 import java.util.Scanner;
 
 public class Menu{
-    
-    public void printTitle(){
-        final String PURPLE = "\u001B[38;5;93m";
+    public void PrintTitle(){
+        final String PURPLE = "\u001B[35m";
         final String RESET = "\u001B[0m";
         System.out.print(PURPLE +
             "                                                          \n"+
