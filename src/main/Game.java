@@ -5,7 +5,7 @@ public class Game {
     private Scanner scanner; 
     private short playerAmount; 
     private HumanPlayer playerOne, playerTwo; 
-    private AIPlayer sysPlayer; 
+   // private AIPlayer sysPlayer; 
 
     private char[][] gameState = {{' ', ' ', ' '}, {' ', ' ', ' '}, {' ', ' ', ' '}}; 
     
@@ -56,30 +56,40 @@ public class Game {
 
     }
 
-    public byte[] askMove(){
-        byte[] move = new byte[2];   
-        System.out.println("~~~Jugada~~~: "); 
-        System.out.println("Fila: "); 
-        move[0] = scanner.nextByte();  
-        System.out.println("Columna: "); 
-        move[1] = scanner.nextByte(); 
+    public void setPlayerSymbol(int gameMode){
+        /*
+         * La opción 1 corresponde al modo de un jugador
+         */
+        if (gameMode == 1) {
+            System.out.println("""
+                            ¡Elige tu marca para jugar!
+                                X
+                                O
+                            """);
+            String entrada = scanner.next();
+            char simbolo = entrada.charAt(0);
+            this.playerOne = new HumanPlayer(simbolo); 
+           // 0this.sysPlayer = new AIPlayer(simbolo == 'O' ? 'X':'O');
+        } else if (gameMode == 0) {
+            System.out.println("""
+                            ¡Jugador 1: elige tu marca para jugar!
+                                X
+                                O
+                            """);
+            String entrada = scanner.next();
+            char simbolo = entrada.charAt(0);
+            this.playerOne = new HumanPlayer(simbolo); 
+            this.playerTwo = new HumanPlayer(simbolo == 'O' ? 'X':'O'); 
 
-        while (!this.gameBoard.IsCellEmpty(move[0], move[1])) {
-            System.out.println("ERROR\n ¡Celda ya ocupada!");
-            System.out.println("~~~Jugada~~~: "); 
-            System.out.println("Fila: "); 
-            move[0] = scanner.nextByte();  
-            System.out.println("Columna: "); 
-            move[1] = scanner.nextByte();
         }
-        return move; 
+
     }
 
     public void onePlayerGame(){        
         while (true) {
             byte[] move = new byte[2]; 
             System.out.println("Turno del jugador 1:");
-            move = askMove(); 
+            move = playerOne.MakeMove(this.gameBoard); 
             this.gameBoard.SetCell(move[0], move[1],Character.toString( this.playerOne.GetSymbol())); 
             gameState[(int)move[0]][(int)move[1]] = playerOne.GetSymbol();  
             this.gameBoard.PrintBoard();
@@ -89,7 +99,7 @@ public class Game {
             }
 
             System.out.println("Turno del jugador 2: ");
-            move = askMove(); 
+         //   move = sysPlayer.MakeMove(this.gameBoard); 
             this.gameBoard.SetCell(move[0], move[1],Character.toString(this.playerTwo.GetSymbol()));
             gameState[(int)move[0]][(int)move[1]] = playerTwo.GetSymbol();
             this.gameBoard.PrintBoard();
@@ -104,7 +114,7 @@ public class Game {
          while (true) {
             byte[] move = new byte[2]; 
             System.out.println("Turno del jugador 1:");
-            move = askMove(); 
+            move = playerOne.MakeMove(this.gameBoard); 
             this.gameBoard.SetCell(move[0], move[1],Character.toString(this.playerOne.GetSymbol())); 
             gameState[(int)move[0]][(int)move[1]] = playerOne.GetSymbol();  
             this.gameBoard.PrintBoard();
@@ -114,8 +124,8 @@ public class Game {
             }
 
             System.out.println("Turno del jugador IA: ");
-            move = sysPlayer.MakeMove(this.gameBoard);  
-            this.gameBoard.SetCell(move[0], move[1], this.playerTwo.GetSymbol());
+            move = playerTwo.MakeMove(this.gameBoard);  
+            this.gameBoard.SetCell(move[0], move[1], Character.toString(this.playerTwo.GetSymbol()));
             gameState[(int)move[0]][(int)move[1]] = playerTwo.GetSymbol();
             this.gameBoard.PrintBoard();
             if (isWinner(gameState)) {
@@ -127,12 +137,13 @@ public class Game {
 
     public void play() {
         int option;
-        gameMenu.PrintTitle();
         option = gameMenu.RunMenu(); 
         if (option == 0) {
-            onePlayerGame();
+            setPlayerSymbol(option);
+            twoPlayerGame();
         } else if (option == 1) {
-            twoPlayerGame(); 
+            setPlayerSymbol(option); 
+            onePlayerGame(); 
         }
 
     }

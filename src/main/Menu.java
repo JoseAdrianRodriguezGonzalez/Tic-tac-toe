@@ -72,8 +72,8 @@ public class Menu{
                         "                  __/ |                                               \n" +
                         "                 |___/                                               \n" +
                         RESET);
+                        //funcion de Player vs AI
                         return 1;
-                    //funcion de Player vs AI
                 case 3:
                     System.out.println("Leaving ...");
                     break;
