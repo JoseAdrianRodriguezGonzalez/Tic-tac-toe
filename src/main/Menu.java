@@ -8,7 +8,7 @@ public class Menu{
      * Imprime un titulo con colores
      */
     public void PrintTitle(){
-        final String PURPLE = "\u001B[35m";
+        final String PURPLE = "\u001B[38;5;93m";
         final String RESET = "\u001B[0m";
         System.out.print(PURPLE +
             "                                                          \n"+
@@ -29,9 +29,10 @@ public class Menu{
     public void RunMenu() {
         Scanner Scanf = new Scanner(System.in);
         byte Option;
-        final String PURPLE = "\u001B[38;5;93m";
+        final String BLUE = "\u001B[38;2;0;255;255m";
         final String PINK = "\u001B[38;5;201m";
         final String RESET = "\u001B[0m";
+        final String RED = "\u001B[31m";
         Game g=new Game();
         do {
 
@@ -49,7 +50,7 @@ public class Menu{
             System.out.println("Selected option: " + Option);
             switch (Option) {
                 case 1:
-                    System.out.print(PURPLE +
+                    System.out.print(BLUE +
                     "\n" +
                     "  _____  _                         __      _______     _____  _                       \n" +
                     " |  __ \\| |                        \\ \\    / / ____|   |  __ \\| |                      \n" +
@@ -78,7 +79,18 @@ public class Menu{
                     break;
                     //funcion de Player vs AI
                 case 3:
-                    System.out.println("Leaving ...");
+                    System.out.print(RED +
+                        "\n" +
+                        "  _                      _                         \n" +
+                        " | |                    (_)                        \n" +
+                        " | |     ___  __ ___   ___ _ __   __ _             \n" +
+                        " | |    / _ \\/ _` \\ \\ / / | '_ \\ / _` |            \n" +
+                        " | |___|  __/ (_| |\\ V /| | | | | (_| |  _   _   _ \n" +
+                        " |______\\___|\\__,_| \\_/ |_|_| |_|\\__, | (_) (_) (_)\n" +
+                        "                                  __/ |            \n" +
+                        "                                 |___/             \n" +
+                        RESET);
+
                     break;
                 default:
                     System.out.println("Invalid option!!!");
