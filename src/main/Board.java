@@ -10,6 +10,18 @@ public class Board{
             }
         }
     }
+    /**
+     * Metodo para obtener el estado actual del mapa
+     * @return
+     */
+    public char[][] GetBoardState(){
+        char[][] State=new char[3][3];
+        for (int i = 0; i < 3; i++) 
+            for (int j = 0; j < 3; j++)
+                State[i][j]=this.Cells[i][j].GetValue().charAt(0);
+        return State; 
+    }
+
     /*La función PrintBoard no recibe ningún párametro, ni devuelve algun valor
      * Imprime el tablero junto con el valor dentro de la matriz Cells('X'/'O')
      */
