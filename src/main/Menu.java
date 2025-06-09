@@ -98,5 +98,6 @@ public class Menu{
             }
 
         } while (Option != 3);
+        Scanf.close();
     }
 }

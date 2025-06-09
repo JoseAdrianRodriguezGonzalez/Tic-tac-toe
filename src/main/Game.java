@@ -1,10 +1,5 @@
-import java.util.Random;
-import java.util.Scanner; 
-import java.util.random.*;
 public class Game {
     private Board GameBoard;
-    private Scanner Scanner; 
-    private short PlayerAmount; 
     //private AIPlayer SysPlayer; 
 
     private char[][] GameState = {{' ', ' ', ' '}, {' ', ' ', ' '}, {' ', ' ', ' '}}; 
@@ -15,8 +10,6 @@ public class Game {
      */
     public Game() {
         this.GameBoard = new Board(); 
-        this.Scanner = new Scanner(System.in); 
-        this.PlayerAmount = 0;  
     }
     /*
      * Función que recibe un char[][] y devuelve un booleano
@@ -126,13 +119,10 @@ public class Game {
     
     public void OnePlayerGame() {
         HumanPlayer Human=new HumanPlayer();
-        AIPlayer AI=new AIPlayer(Human); 
-        Random Rand=new Random();
+        AIPlayer AI=new AIPlayer(Human);         
         while (true) {
-            if(Rand.nextBoolean())
-                if(TurnPlayer(Human)) break;
-            else
-                if(TurnPlayer(AI)) break;        
+            if(TurnPlayer(Human)) break;
+            if(TurnPlayer(AI)) break;        
         }
         GameBoard.ClearBoard();
     }
