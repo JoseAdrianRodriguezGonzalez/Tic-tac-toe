@@ -93,11 +93,9 @@ public class Game {
      * Limpia el atributo GameState
     */
     private void CleanStates(){
-        for (int i = 0; i < GameState.length; i++) {
-            for (int j = 0; j < GameState[0].length; j++) {
+        for (int i = 0; i < GameState.length; i++) 
+            for (int j = 0; j < GameState[0].length; j++) 
                 GameState[i][j]=' ';
-            }
-        }
     }
     /*
      * Función que recibe la referencia de Player y el arreglo Move, que contiene la posición de la jugada. 
@@ -110,9 +108,9 @@ public class Game {
         this.GameBoard.HelpPrintBoard();
         this.GameBoard.PrintBoard();
     }
-/*Función que no devuelve ni recibe parametros.
- * Es el juego para dos jugadores
-  */
+    /*Función que no devuelve ni recibe parametros.
+    * Es el juego para dos jugadores
+    */
     public void TwoPlayerGame(){        
         HumanPlayer Player1,Player2;
         Player1=new HumanPlayer();

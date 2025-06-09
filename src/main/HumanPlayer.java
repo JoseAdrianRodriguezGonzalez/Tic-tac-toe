@@ -12,8 +12,7 @@ public class HumanPlayer extends Player {
      * Constructor: del jugador humano.
      * Parametro (symbol) El símbolo que representará al jugador ('X' o 'O').
      */
-
-    @Override
+    @Override 
     protected char Initializer(){
         char CharObtained;
         do{
@@ -24,9 +23,14 @@ public class HumanPlayer extends Player {
         }while(CharObtained!='X' && CharObtained!='O');
         return CharObtained;
     }
+    /*Constructor que llamar al constructor de Player */
     public HumanPlayer(){
         super();
     }
+    /**
+     * Recibe el parametro Symbol, e inicializa el Scanner, a su vez de inicializar el valor de Symbol
+     * @param Symbol
+     */
     public HumanPlayer(char Symbol){
         super(Symbol);
         this.Scanner=new Scanner(System.in);

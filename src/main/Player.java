@@ -6,13 +6,17 @@ public abstract class Player {
     protected char Symbol; // 'X' o 'O'
     /**
      * Constructor del jugador.
-     * @param symbol El símbolo del jugador ('X' o 'O').
+     * no recibe parametros
      */
     public Player() {
         this.Symbol=this.Initializer();
     
 
     }
+    /**
+     * Constructor del jugador
+     * @param Symbol
+     */
     public Player(char Symbol){
         this.Symbol = Character.toUpperCase(Symbol);
     }
@@ -32,6 +36,11 @@ public abstract class Player {
      * @param board El tablero actual del juego.
      * @return Un arreglo de dos bytes [fila, columna] indicando la jugada.
      */
-    protected abstract char Initializer();
+
     public abstract byte[] MakeMove(Board Board);
+    /**
+     * Método abstracto que define los párametros iniciales del objeto
+     * @return un elemento del tipo caracter
+     */
+    protected abstract char Initializer();
 }

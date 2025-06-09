@@ -26,6 +26,10 @@ public class Board{
             System.out.println(((Rows<2)?"___|___|___":"   |   |   "));
         }
     }
+    /**
+     * Función que no recibe y no devuelve nada
+     * Imprime un tablero de ayuda
+     */
     public void HelpPrintBoard() {
         System.out.println("-------Tablero de ayuda-------");
         for (byte Rows = 0; Rows < 3; Rows++) { 
