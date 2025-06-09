@@ -1,4 +1,6 @@
+import java.util.Random;
 import java.util.Scanner; 
+import java.util.random.*;
 public class Game {
     private Board GameBoard;
     private Scanner Scanner; 
@@ -121,33 +123,21 @@ public class Game {
         }
         GameBoard.ClearBoard();
     }
-    /* 
-    public void TwoPlayerGame() {
-         while (true) {
-            byte[] Move = new byte[2]; 
-            System.out.println("Turno del jugador 1:");
-            Move = AskMove(); 
-            this.GameBoard.SetCell(Move[0], Move[1],Character.toString(this.PlayerOne.GetSymbol())); 
-            GameState[(int)Move[0]][(int)Move[1]] = PlayerOne.GetSymbol();  
-            this.GameBoard.PrintBoard();
-            if (IsWinner(GameState)) {
-                System.out.println("Victoria de " + PlayerOne.GetSymbol());
-                break; 
-            }
-
-            System.out.println("Turno del jugador IA: ");
-            Move = SysPlayer.MakeMove(this.GameBoard);  
-            this.GameBoard.SetCell(Move[0], Move[1], this.PlayerTwo.GetSymbol());
-            GameState[(int)Move[0]][(int)Move[1]] = PlayerTwo.GetSymbol();
-            this.GameBoard.PrintBoard();
-            if (IsWinner(GameState)) {
-                System.out.println("Victoria de " + PlayerOne.GetSymbol());
-                break; 
-            }
+    
+    public void OnePlayerGame() {
+        HumanPlayer Human=new HumanPlayer();
+        AIPlayer AI=new AIPlayer(Human); 
+        Random Rand=new Random();
+        while (true) {
+            if(Rand.nextBoolean())
+                if(TurnPlayer(Human)) break;
+            else
+                if(TurnPlayer(AI)) break;        
         }
+        GameBoard.ClearBoard();
     }
 
-    */
+    
    
     
 }

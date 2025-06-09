@@ -76,6 +76,7 @@ public class Menu{
                         "                  __/ |                                               \n" +
                         "                 |___/                                               \n" +
                         RESET);
+                    g.OnePlayerGame();
                     break;
                     //funcion de Player vs AI
                 case 3:
