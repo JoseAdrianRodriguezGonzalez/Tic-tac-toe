@@ -74,11 +74,8 @@ Contiene las reglas del juego, el como determina quien gana o pierde tablero,tur
 Clase abstracta que dará la base para crear los modos de juego, (Jugador contra Jugador e IA)
 # HumanPlayer (Emilio) Completado
 Modo 1 jugador
-# AIPlayer (Jose)
+# AIPlayer (Jose) Completado
  modo jugador contra la computadora
 # Board (Isa) completado
 El despliegue del tablero
 
-# ¿Qué sigue?
-
-La siguiente fase va a ser unir todas clases que se crearon, debido a que las ultimas o se pueden unificar, debo de corregir diversas secciones.
