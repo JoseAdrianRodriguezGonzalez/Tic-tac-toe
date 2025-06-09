@@ -1,140 +1,153 @@
 import java.util.Scanner; 
 public class Game {
-    private Menu gameMenu; 
-    private Board gameBoard;
-    private Scanner scanner; 
-    private short playerAmount; 
-    private HumanPlayer playerOne, playerTwo; 
-    private AIPlayer sysPlayer; 
+    private Board GameBoard;
+    private Scanner Scanner; 
+    private short PlayerAmount; 
+    //private AIPlayer SysPlayer; 
 
-    private char[][] gameState = {{' ', ' ', ' '}, {' ', ' ', ' '}, {' ', ' ', ' '}}; 
+    private char[][] GameState = {{' ', ' ', ' '}, {' ', ' ', ' '}, {' ', ' ', ' '}}; 
     
     /*
      * El constructor de la clase es el encargado crear los objetos que va a necesitar 
      * a lo largo del juego. 
      */
     public Game() {
-        this.gameBoard = new Board(); 
-        this.gameMenu = new Menu(); 
-        this.scanner = new Scanner(System.in); 
-        this.playerAmount = 0;  
+        this.GameBoard = new Board(); 
+        this.Scanner = new Scanner(System.in); 
+        this.PlayerAmount = 0;  
     }
     /*
-     *  Verificar de esta forma redcuce la complejidad
-     */
-    public boolean isWinner(char[][] currState) {
-        char one, two, three; 
+     * Función que recibe un char[][] y devuelve un booleano
+     * Detecta si el juego termino en empate
+    */
+    public boolean IsDraw(char[][] CurrState){
+        byte TotalLength=0;
+        for (int rows = 0; rows < CurrState.length; rows++)
+            for (int columns = 0; columns < CurrState[0].length; columns++) 
+                if(CurrState[rows][columns]!=' ')
+                    TotalLength++;
+        if(TotalLength==9 && !IsWinner(CurrState))
+            return true;
+        return false;
+        
+    }
+        /*
+     * Función que recibe un char[][] y devuelve un booleano
+     * Detecta si alguien gano
+    */
+    public boolean IsWinner(char[][] CurrState) {
+        char One, Two, Three; 
 
         // Verificación de todas las filas y columnas.
         for (int i = 0; i < 3; i++) {
-            one = currState[i][0];
-            two = currState[i][1];
-            three = currState[i][2]; 
+            One = CurrState[i][0];
+            Two = CurrState[i][1];
+            Three = CurrState[i][2]; 
 
-            if (one != ' ' && one == two && two == three) return true; 
+            if (One != ' ' && One == Two && Two == Three) return true; 
 
-            one = currState[0][i];
-            two = currState[1][i];
-            three = currState[2][i];
+            One = CurrState[0][i];
+            Two = CurrState[1][i];
+            Three = CurrState[2][i];
 
-            if (one != ' ' && one == two && two == three) return true;
+            if (One != ' ' && One == Two && Two == Three) return true;
         } 
         // Verificar la diagonal
-        one = currState[0][0];
-        two = currState[1][1];
-        three = currState[2][2];
-        if (one != ' ' && one == two && two == three) return true;
+        One = CurrState[0][0];
+        Two = CurrState[1][1];
+        Three = CurrState[2][2];
+        if (One != ' ' && One == Two && Two == Three) return true;
 
         // Verificar la otra diagonal 
-        one = currState[0][2];
-        two = currState[1][1];
-        three = currState[2][0];
-        if (one != ' ' && one == two && two == three) return true;
+        One = CurrState[0][2];
+        Two = CurrState[1][1];
+        Three = CurrState[2][0];
+        if (One != ' ' && One == Two && Two == Three) return true;
 
 
         return false;
 
     }
-
-    public byte[] askMove(){
-        byte[] move = new byte[2];   
-        System.out.println("~~~Jugada~~~: "); 
-        System.out.println("Fila: "); 
-        move[0] = scanner.nextByte();  
-        System.out.println("Columna: "); 
-        move[1] = scanner.nextByte(); 
-
-        while (!this.gameBoard.IsCellEmpty(move[0], move[1])) {
-            System.out.println("ERROR\n ¡Celda ya ocupada!");
-            System.out.println("~~~Jugada~~~: "); 
-            System.out.println("Fila: "); 
-            move[0] = scanner.nextByte();  
-            System.out.println("Columna: "); 
-            move[1] = scanner.nextByte();
+    /*
+     * Función que le pasa la referencia Player y devuelve un booelano
+     * Realiza las acciones por turno de un jugador
+     */
+    private boolean TurnPlayer(Player Player){
+        byte[] Move = new byte[2];
+        Move=Player.MakeMove(GameBoard);
+        MakeMovement(Player, Move);
+        if (IsWinner(GameState)) {
+            System.out.println("Victoria de " + Player.GetSymbol());
+            CleanStates();
+            return true;
         }
-        return move; 
+        if (IsDraw(GameState)) {
+            System.out.println("El juego termino en empate ");
+            CleanStates();
+            return true;
+        }
+        return false;
     }
-
-    public void onePlayerGame(){        
+    /*
+     * Fnción que no devuelve ni recibe ningún parametro
+     * Limpia el atributo GameState
+    */
+    private void CleanStates(){
+        for (int i = 0; i < GameState.length; i++) 
+            for (int j = 0; j < GameState[0].length; j++) 
+                GameState[i][j]=' ';
+    }
+    /*
+     * Función que recibe la referencia de Player y el arreglo Move, que contiene la posición de la jugada. 
+     * No devuelve nada, realiza el movimiento,lo guarda en el tablero y en el estado y se imprime el tablero principal
+     * Como el tablero de ayuda
+     */
+    private void MakeMovement(Player Player, byte[] Move){
+        this.GameBoard.SetCell(Move[0], Move[1], Character.toString(Player.GetSymbol()));
+        GameState[(int)Move[0] ][(int)Move[1] ]=Player.GetSymbol();
+        this.GameBoard.HelpPrintBoard();
+        this.GameBoard.PrintBoard();
+    }
+    /*Función que no devuelve ni recibe parametros.
+    * Es el juego para dos jugadores
+    */
+    public void TwoPlayerGame(){        
+        HumanPlayer Player1,Player2;
+        Player1=new HumanPlayer();
+        Player2 = new HumanPlayer((Player1.GetSymbol()=='X')?'O':'X') ;
         while (true) {
-            byte[] move = new byte[2]; 
-            System.out.println("Turno del jugador 1:");
-            move = askMove(); 
-            this.gameBoard.SetCell(move[0], move[1],Character.toString( this.playerOne.GetSymbol())); 
-            gameState[(int)move[0]][(int)move[1]] = playerOne.GetSymbol();  
-            this.gameBoard.PrintBoard();
-            if (isWinner(gameState)) {
-                System.out.println("Victoria de " + playerOne.GetSymbol());
-                break; 
-            }
-
-            System.out.println("Turno del jugador 2: ");
-            move = askMove(); 
-            this.gameBoard.SetCell(move[0], move[1],Character.toString(this.playerTwo.GetSymbol()));
-            gameState[(int)move[0]][(int)move[1]] = playerTwo.GetSymbol();
-            this.gameBoard.PrintBoard();
-            if (isWinner(gameState)) {
-                System.out.println("Victoria de " + playerOne.GetSymbol());
-                break; 
-            }
+           if(TurnPlayer(Player1)) break;
+           if(TurnPlayer(Player2)) break;
         }
+        GameBoard.ClearBoard();
     }
-
-    public void twoPlayerGame() {
+    /* 
+    public void TwoPlayerGame() {
          while (true) {
-            byte[] move = new byte[2]; 
+            byte[] Move = new byte[2]; 
             System.out.println("Turno del jugador 1:");
-            move = askMove(); 
-            this.gameBoard.SetCell(move[0], move[1],Character.toString(this.playerOne.GetSymbol())); 
-            gameState[(int)move[0]][(int)move[1]] = playerOne.GetSymbol();  
-            this.gameBoard.PrintBoard();
-            if (isWinner(gameState)) {
-                System.out.println("Victoria de " + playerOne.GetSymbol());
+            Move = AskMove(); 
+            this.GameBoard.SetCell(Move[0], Move[1],Character.toString(this.PlayerOne.GetSymbol())); 
+            GameState[(int)Move[0]][(int)Move[1]] = PlayerOne.GetSymbol();  
+            this.GameBoard.PrintBoard();
+            if (IsWinner(GameState)) {
+                System.out.println("Victoria de " + PlayerOne.GetSymbol());
                 break; 
             }
 
             System.out.println("Turno del jugador IA: ");
-            move = sysPlayer.MakeMove(this.gameBoard);  
-            this.gameBoard.SetCell(move[0], move[1], this.playerTwo.GetSymbol());
-            gameState[(int)move[0]][(int)move[1]] = playerTwo.GetSymbol();
-            this.gameBoard.PrintBoard();
-            if (isWinner(gameState)) {
-                System.out.println("Victoria de " + playerOne.GetSymbol());
+            Move = SysPlayer.MakeMove(this.GameBoard);  
+            this.GameBoard.SetCell(Move[0], Move[1], this.PlayerTwo.GetSymbol());
+            GameState[(int)Move[0]][(int)Move[1]] = PlayerTwo.GetSymbol();
+            this.GameBoard.PrintBoard();
+            if (IsWinner(GameState)) {
+                System.out.println("Victoria de " + PlayerOne.GetSymbol());
                 break; 
             }
         }
     }
 
-    public void play() {
-        int option;
-        gameMenu.PrintTitle();
-        option = gameMenu.RunMenu(); 
-        if (option == 0) {
-            onePlayerGame();
-        } else if (option == 1) {
-            twoPlayerGame(); 
-        }
-
-    }
+    */
+   
     
 }

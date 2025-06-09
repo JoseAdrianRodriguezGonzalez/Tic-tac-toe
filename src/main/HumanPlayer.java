@@ -7,16 +7,34 @@ import java.util.Scanner;
 public class HumanPlayer extends Player {
 
     private Scanner Scanner;
-
+    
     /**
      * Constructor: del jugador humano.
      * Parametro (symbol) El símbolo que representará al jugador ('X' o 'O').
      */
-    public HumanPlayer(char Symbol) {
-        super(Symbol);
-        this.Scanner = new Scanner(System.in);
+    @Override 
+    protected char Initializer(){
+        char CharObtained;
+        do{
+            this.Scanner = new Scanner(System.in);
+            System.out.println("Que turno deseas tener? (X/O)");
+            CharObtained=Scanner.next().charAt(0);
+            CharObtained=Character.toUpperCase(CharObtained);
+        }while(CharObtained!='X' && CharObtained!='O');
+        return CharObtained;
     }
-
+    /*Constructor que llamar al constructor de Player */
+    public HumanPlayer(){
+        super();
+    }
+    /**
+     * Recibe el parametro Symbol, e inicializa el Scanner, a su vez de inicializar el valor de Symbol
+     * @param Symbol
+     */
+    public HumanPlayer(char Symbol){
+        super(Symbol);
+        this.Scanner=new Scanner(System.in);
+    }
     /**
      * Permite al jugador humano ingresar una jugada mediante consola.
      * Se asegura de que la celda esté vacía antes de aceptar la jugada.
@@ -31,6 +49,7 @@ public class HumanPlayer extends Player {
 
         while (!Valid) {
             try {
+                //Quiero que el menu sea más fácil de entender, prefiero que tenga un mapa de caracteres
                 System.out.println(" --- Turno del jugador (" + Symbol + ") ---");
                 System.out.print("Fila (0-2): ");
                 Move[0] = Scanner.nextByte();

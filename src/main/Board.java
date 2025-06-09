@@ -26,6 +26,25 @@ public class Board{
             System.out.println(((Rows<2)?"___|___|___":"   |   |   "));
         }
     }
+    /**
+     * Función que no recibe y no devuelve nada
+     * Imprime un tablero de ayuda
+     */
+    public void HelpPrintBoard() {
+        System.out.println("-------Tablero de ayuda-------");
+        for (byte Rows = 0; Rows < 3; Rows++) { 
+            for (byte Columns = 0; Columns < 3; Columns++) { 
+                System.out.print(" " + Rows+Columns +" ");
+                if (Columns < 2){ 
+                    System.out.print("|");
+                }
+            }
+            System.out.println();
+            System.out.println(((Rows<2)?"____|____|____":"    |    |    "));
+        }
+        System.out.println("\n Ejemplo 01 \n 0=fila \n 1=columna");
+        System.out.print("----------------------------");
+    }
     
     /* Requiere la fila y la columna en donde se ingresará el dato,(de 0 a 2) y el valor del string 
     metodo para asignar el valor de cada jugador(X /O) dentro de la matriz Cells
@@ -43,6 +62,13 @@ public class Board{
     */
     public boolean IsCellEmpty(int Row, int Col){
         return Cells[Row][Col].GetValue().equals(" ");
+    }
+    public void ClearBoard(){
+        for(Byte Row =0; Row < 3; Row++){
+            for(byte Column=0; Column < 3; Column++){
+                Cells[Row][Column].SetValue(" ");;
+            }
+        }
     }
 
 }// fin clase Board

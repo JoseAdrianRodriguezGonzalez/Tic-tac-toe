@@ -26,13 +26,15 @@ public class Menu{
     }
     /** Función que no recibe párametros y retorna un entero que indica la opción elegida que inidca el tipo de juego que se va a jugar.
      * Despliega el menu y las opciones posibles */
-    public int RunMenu() {
+    public void RunMenu() {
         Scanner Scanf = new Scanner(System.in);
         byte Option;
         final String PURPLE = "\u001B[38;5;93m";
         final String PINK = "\u001B[38;5;201m";
         final String RESET = "\u001B[0m";
+        Game g=new Game();
         do {
+
             PrintTitle();
             System.out.println("Choose an option: ");
             System.out.println("1. Player VS Player");
@@ -44,6 +46,7 @@ public class Menu{
                 System.out.println("Invalid option!!!");
                 continue;
             }
+            System.out.println("Selected option: " + Option);
             switch (Option) {
                 case 1:
                     System.out.print(PURPLE +
@@ -57,9 +60,9 @@ public class Menu{
                     "                  __/ |                                                __/ |          \n" +
                     "                 |___/                                                |___/           \n" +
                     RESET);
-
+                    g.TwoPlayerGame();
                     //funcion de Player vs Player
-                    return 0;
+                    break;
                 case 2:
                     System.out.print(PINK +
                         "\n" +
@@ -72,7 +75,7 @@ public class Menu{
                         "                  __/ |                                               \n" +
                         "                 |___/                                               \n" +
                         RESET);
-                        return 1;
+                    break;
                     //funcion de Player vs AI
                 case 3:
                     System.out.println("Leaving ...");
@@ -80,8 +83,7 @@ public class Menu{
                 default:
                     System.out.println("Invalid option!!!");
             }
-            System.out.println("Selected option: " + Option);
+
         } while (Option != 3);
-        return  3;
     }
 }
