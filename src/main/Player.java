@@ -4,15 +4,19 @@ public abstract class Player {
     * Proporciona la estructura base para jugadores humanos e IA.
     */
     protected char Symbol; // 'X' o 'O'
-
     /**
      * Constructor del jugador.
      * @param symbol El símbolo del jugador ('X' o 'O').
      */
-    public Player(char Symbol) {
+    public Player() {
+        this.Symbol=this.Initializer();
+    
+
+    }
+    public Player(char Symbol){
         this.Symbol = Character.toUpperCase(Symbol);
     }
-
+    
     /**
      * Obtiene el símbolo del jugador.
      * @return El símbolo del jugador.
@@ -28,5 +32,6 @@ public abstract class Player {
      * @param board El tablero actual del juego.
      * @return Un arreglo de dos bytes [fila, columna] indicando la jugada.
      */
+    protected abstract char Initializer();
     public abstract byte[] MakeMove(Board Board);
 }
